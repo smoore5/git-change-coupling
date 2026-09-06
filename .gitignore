@@ -1,0 +1,4 @@
+/git-change-coupling
+*.exe
+*.test
+*.out
