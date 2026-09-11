@@ -37,6 +37,28 @@ Each line shows:
 | `-since`     | (none)  | only consider commits after this date, e.g. `2024-01-01` |
 | `-min-count` | `2`     | minimum shared commits required to report a pair       |
 | `-limit`     | `20`    | maximum number of pairs to print                       |
+| `-json`      | `false` | print results as a JSON array instead of a table       |
+
+With `-json`, each entry has `a`, `b`, `count`, and `strength` fields, so the
+same `-min-count`/`-limit` filtering applies before the output is written:
+
+```
+$ git-change-coupling -json -limit 2
+[
+  {
+    "a": "internal/api/handler.go",
+    "b": "internal/api/handler_test.go",
+    "count": 12,
+    "strength": 85.7
+  },
+  {
+    "a": "config/prod.yaml",
+    "b": "config/staging.yaml",
+    "count": 9,
+    "strength": 60
+  }
+]
+```
 
 Commits that touch more than 50 files (mass renames, initial imports,
 vendoring) are skipped, since they inflate every pair count without meaning

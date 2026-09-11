@@ -9,9 +9,10 @@ import (
 
 // Pair describes how often two files were touched by the same commit.
 type Pair struct {
-	A, B     string
-	Count    int
-	Strength float64 // Count as a percentage of the less-frequently-changed file's total commits
+	A        string  `json:"a"`
+	B        string  `json:"b"`
+	Count    int     `json:"count"`
+	Strength float64 `json:"strength"` // Count as a percentage of the less-frequently-changed file's total commits
 }
 
 // maxFilesPerCommit skips commits that touch an unusually large number of
